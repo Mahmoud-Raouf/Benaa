@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+
+<div class="main-content">
+    <div class="breadcrumb">
+        <h1 class="mr-2">تفاصيل طلبات المشاريع الخاصة بك</h1>
+    </div>
+    <div class="separator-breadcrumb border-top"></div>
+        <div class="col-md-2 mt-3 mt-md-0">
+            <a href="{% url 'accounts:company_list' %}"><button  class="btn btn-primary btn-block">إضافة طلب مشروع</button></a>
+        </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card o-hidden mb-4">
+                        <div class="card-header d-flex align-items-center border-0">
+                            <h3 class="w-50 float-left card-title m-0"></h3>
+                        </div>
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table text-center" id="user_table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">إسم العميل </th>
+                                            <th scope="col">رقم الطلب </th>
+                                            <th scope="col">عنوان المشروع </th>
+                                            <th scope="col">نوع العمل </th>
+                                            <th scope="col">حالة الطلب</th>
+                                            <th scope="col">وصف الطلب </th>
+                                            <th scope="col">المدينة </th>
+                                            <th scope="col">تاريخ الطلب </th>
+                                            <th scope="col">حالة الطلب </th>
+                                            <th scope="col">إضافة حالة </th>
+                                            <th scope="col">إضافة العقد والضمات والمواد </th>
+                                            <th scope="col">إرسال طلب إجتماع </th>
+                                            <th scope="col">حذف الطلب </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for request in project_request_list %}
+                                        <tr>
+                                            <td>{{request.workname}}</td>
+                                            <td>{{request.code}}</td>
+                                            <td>{{request.name}}</td>
+                                            <td>{{request.workType}}</td>
+                                            <td>{{request.request_status}}</td>
+                                            <td>{{request.description}}</td>
+                                            <td>{{request.city}}</td>
+                                            <td>{{request.create_at|date:'d-m-Y'}}</td>
+                                            <td>{{request.request_status}}</td>
+
+                                            
+
+                                            
+                                            <td> <a  class="btn btn-outline-primary" href="{% url 'request:add_Update_Project_Status' request.id %}" style="width: 80; height: 15;">
+                                                إضافة
+                                            </a></td>
+                                            <td> <a  class="btn btn-outline-success" href="{% url 'request:add_Contracts_Guarantees' request.id %}" style="width: 80; height: 15;">
+                                                إضافة
+                                              </a></td>
+                                            <td> <a  class="btn btn-outline-dark   " href="{% url 'request:add_Project_Meetings' request.id %}" style="width: 80; height: 15;">
+                                                إرسال
+                                              </a></td>
+
+                                                
+                                            <td><a class="text-danger mr-2" href="{% url 'request:request_delete' request.id %}"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end of main-content -->
+</div>
+</div>
+
+{% endblock %}
+
+

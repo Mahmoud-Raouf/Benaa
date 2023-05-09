@@ -1,0 +1,68 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'body' %}
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+
+<div class="main-content">
+    <div class="breadcrumb">
+        <h1 class="mr-2">طلبات إستشارة العملاء</h1>
+    </div>
+    <div class="separator-breadcrumb border-top"></div>
+        
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card o-hidden mb-4">
+                        <div class="card-header d-flex align-items-center border-0">
+                            <h3 class="w-50 float-left card-title m-0"></h3>
+                        </div>
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table text-center" id="user_table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">إسم الطلب </th>
+                                            <th scope="col">رقم الطلب </th>
+                                            <th scope="col">وصف الطلب </th>
+                                            <th scope="col">تاريخ إنشاء الطلب </th>
+                                            <th scope="col">حالةالطلب </th>
+                                            <th scope="col">حذف الطلب </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for request in request_order_for_company %}
+                                        <tr>
+                                            <td>{{request.name}}</td>
+                                            <td>{{request.code}}</td>
+                                            <td>{{request.description}}</td>
+                                            <td>{{request.create_at|date:'d-m-Y'}}</td>
+                                            <td>{{request.request_status}}</td>
+                                        
+                                            <td><a  class="btn btn-outline-success"  href="{% url 'request:add_comment_to_ConsultationRequest' request.pk %}" style=" height: 15;"  id="Companyupdate" name="Companyupdate">
+                                                الرد على الإستشارة
+                                            </button></td>
+                                            <td><a class="text-danger mr-2" href="{% url 'request:request_delete' request.id %}"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end of main-content -->
+</div>
+</div>
+
+{% endblock %}
+
+
