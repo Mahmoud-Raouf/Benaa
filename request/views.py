@@ -128,8 +128,11 @@ def add_Project_Request(request ,id=id):
 
 def add_Update_Project_Status(request, id):
     projectstatusId = get_object_or_404(ProjectRequest, pk=id)
+    form = ProjectStatusForm(request.POST, request.FILES)
+
     if request.method == 'POST':
-        form = ProjectStatusForm(request.POST)
+        form = ProjectStatusForm(request.POST, request.FILES)
+
         if form.is_valid():
             comment = form.save(commit=False)
             comment.projectstatus = projectstatusId

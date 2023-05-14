@@ -140,3 +140,10 @@ def logout(request):
     auth.logout(request)
     return redirect('accounts:login')
 # End Auth
+
+def project_Steps(request):
+
+    return render(request ,'company/project_Steps_liner.html', {
+        'title' : 'العملاء',
+
+    })

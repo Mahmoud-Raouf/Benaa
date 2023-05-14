@@ -86,12 +86,26 @@ class ProjectRequest(models.Model):
 
 
 class ProjectStatus(models.Model):
+
+
+    Project__Status={
+        ('مرحلة إختيار الأرض' , 'مرحلة إختيار الأرض'),
+        ('مرحلة تنظيف الأرض' , 'مرحلة تنظيف الأرض'),
+        ('مرحلة حفر الأساس' , 'مرحلة حفر الأساس'),
+        ('مرحلة تسليح الأساس' , 'مرحلة تسليح الأساس'),
+        ('مرحلة البناء' , 'مرحلة البناء'),
+        ('مرحلة وضع البنية التحتية' , 'مرحلة وضع البنية التحتية'),
+        ('مرحلة التشطيبات' , 'مرحلة التشطيبات'),
+        ('الإنتهاء من البناء' , 'الإنتهاء من البناء'),
+        ('تسليم العمل' , 'تسليم العمل'),
+       
+    }
     
     projectstatus      = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
-    request_status     = models.CharField(_("حالة المرحلة ") , max_length=150)
+    request_status     = models.CharField(_("حالة المرحلة ") , choices=Project__Status, max_length=150)
     image_status     = models.ImageField(_("صورة للمرحلة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("وصف المرحلة"))
-    update_at          = models.DateTimeField(_("أخر تحديث للطلب"), default = timezone.now) 
+    update_at          = models.DateTimeField(auto_now_add=True)
     create_at          = models.DateTimeField(_("تاريخ الطلب"), default = timezone.now) 
 
     def __str__(self):

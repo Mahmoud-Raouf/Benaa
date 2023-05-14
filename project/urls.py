@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('request/', include('request.urls' , namespace='request')),
-    path('users/', include('accounts.urls' , namespace='accounts')),
+    path('users/', include('accounts.urls' , namespace='users')),
     path('orders/', include('orders.urls' , namespace='orders')),
     path('dashboard/', include('dashboard.urls' , namespace='dashboard')),
 ]

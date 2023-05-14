@@ -1,0 +1,110 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block 'body' %}
+
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+    <div class="breadcrumb">
+        <h1 class="mr-2">مراحل تجهيز المشروع</h1>
+    </div>
+    <div class="separator-breadcrumb border-top"></div>
+        
+    <div class="container-fluid">
+
+<div class="wrapper">
+
+    <div class="main-container">
+        <div class="steps-container">
+            <div class="step completed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                </svg>
+                <div class="label completed">
+                    استلام الارض
+                </div>
+                <div class="icon completed">
+                    <i class="far fa-handshake"></i>
+                </div>
+            </div>                <div class="line completed"></div>
+
+            <div class="step completed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                </svg>
+                <div class="label completed">
+                    تجهيز الارض
+                </div>
+                <div class="icon completed">
+                    <i class="far fa-handshake"></i>
+                </div>
+            </div>
+            <div class="line completed"></div>
+            <div class="step completed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                </svg>
+                <div class="label completed">
+                    حفر الارض
+                </div>
+                <div class="icon completed">
+                    <i class="far fa-handshake"></i>
+                </div>
+            </div>
+            <div class="line completed"></div>
+            <div class="step completed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                </svg>
+                <div class="label completed">
+                    تسليح الاساسيات
+                </div>
+                <div class="icon completed">
+                    <i class="far fa-handshake"></i>
+                </div>
+            </div>
+            <div class="line next-step-in-progress">
+            </div>
+
+            <div class="step in-progress">
+                <div class="preloader"></div>
+                <div class="label loading">
+                    البناء
+                </div>
+                <div class="icon in-progress">
+                    <i class="far fa-money-bill-alt"></i>
+                </div>
+            </div>
+            <div class="line prev-step-in-progress"></div>
+            <div class="step">
+                <div class="label">
+                    صب السقف الخرسانى
+                </div>
+                <div class="icon">
+                    <i class="far fa-newspaper"></i>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="step">
+                <div class="label">
+                    التشطيب
+                </div>
+                <div class="icon">
+                    <i class="fas fa-home"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+                <!-- END EDMO HTML (Happy Coding!)-->
+            </main>
+            
+            <!-- Script JS -->
+            <script src="./js/script.js"></script>
+            <!--$%analytics%$-->
+</div>
+</div>
+</div>
+
+{% endblock %}

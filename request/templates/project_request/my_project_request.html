@@ -10,7 +10,7 @@
     </div>
     <div class="separator-breadcrumb border-top"></div>
         <div class="col-md-2 mt-3 mt-md-0">
-            <a href="{% url 'accounts:company_list' %}"><button  class="btn btn-primary btn-block">إضافة طلب مشروع</button></a>
+            <a href="{% url 'users:company_list' %}"><button  class="btn btn-primary btn-block">إضافة طلب مشروع</button></a>
         </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -33,7 +33,7 @@
                                             <th scope="col">وصف الطلب </th>
                                             <th scope="col">المدينة </th>
                                             <th scope="col">تاريخ الطلب </th>
-                                            <th scope="col">حالة الطلب </th>
+                                            <th scope="col">متابعة حالة الطلب </th>
                                             <th scope="col">إضافة حالة </th>
                                             <th scope="col">إضافة العقد والضمات والمواد </th>
                                             <th scope="col">إرسال طلب إجتماع </th>
@@ -52,7 +52,7 @@
                                             <td>{{request.description}}</td>
                                             <td>{{request.city}}</td>
                                             <td>{{request.create_at|date:'d-m-Y'}}</td>
-                                            <td>{{request.request_status}}</td>
+                                            <td><a href="{% url 'users:project_Steps' %}">{{request.request_status}}</a></td>
 
                                             
 

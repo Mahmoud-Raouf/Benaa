@@ -9,7 +9,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{% static 'dist-assets/css/themes/lite-purple.min.css'%}" rel="stylesheet" />
     <link href="{% static 'dist-assets/css/plugins/perfect-scrollbar.min.css'%}" rel="stylesheet" />
+    <link href="{% static 'dist-assets/css/plugins/progesssteps.css'%}" rel="stylesheet" />
+    <link href="{% static 'dist-assets/css/plugins/progessstepsdemo.css'%}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"></head>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'>
 
     {% if title %}
         <title>Benaa | {{title}}</title>
@@ -124,7 +127,7 @@
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'dashboard:dashboard' %}"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">لوحة التحكم</span></a>
                         <div class="triangle"></div>
                     </li>
-                    <li class="nav-item"><a class="nav-item-hold" href="{% url 'accounts:company_list' %}"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">تصفح الشركات</span></a>
+                    <li class="nav-item"><a class="nav-item-hold" href="{% url 'users:company_list' %}"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">تصفح الشركات</span></a>
                         <div class="triangle"></div>
                     </li>
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'request:project_request_list' %}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">مشاريع العملاء</span></a>
