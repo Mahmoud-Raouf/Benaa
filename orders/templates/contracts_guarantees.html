@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block 'body' %}
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+
+<div class="main-content">
+    <div class="breadcrumb">
+        <h1>تفاصيل مشروع :   {{ProjectRequestid.name}} </h1>
+
+    </div>
+    <div class="separator-breadcrumb border-top"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-5">
+                <div class="card-body">
+                   <h6>رقم الطلب : {{ProjectRequestid.code}}</h6>
+                   <h6>تاريخ الطلب : {{ProjectRequestid.create_at}}</h6>
+                   <h6>__________________________________________</h6>
+                   <h4 style="color:green">الرد  : </h4>
+
+                   <br>
+                   <h5>الضمنات :{{contracts_guarantees.description}}</h5>
+                   <h6>__________________________________________</h6>
+
+                   <h5>اخر تحديث : {{contracts_guarantees.update_at}}</h5>
+                   <h6>__________________________________________</h6>
+
+                   <h6>تم النشاء فى : {{contracts_guarantees.create_at}}</h6>
+                   <h6>__________________________________________</h6>
+                   <br>
+
+                   <h5 style="color:red">صورة العقد  : </h5>
+                   {% if contracts_guarantees.image_status %}
+                   <img src="{{contracts_guarantees.image_status.url}}">
+                   {% endif %}
+
+                   <h6>__________________________________________</h6>
+                   <h5 style="color:red">صورة المواد المستخدمة  : </h5>
+                   {% if contracts_guarantees.materials_used %}
+                   <img src="{{contracts_guarantees.materials_used.url}}">
+                   {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div><!-- Footer Start -->
+
+
+{% endblock %}

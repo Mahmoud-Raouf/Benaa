@@ -28,8 +28,8 @@ class ConsultationRequest(models.Model):
 
     
     class Meta:
-        verbose_name = _("Request")
-        verbose_name_plural = _("Requests")
+        verbose_name = _("Consultation Request")
+        verbose_name_plural = _("Consultation Request")
 
 
     
@@ -45,7 +45,9 @@ class ConsultationComment(models.Model):
 
     def __str__(self):
         return self.text
-    
+    class Meta:
+        verbose_name = _("Consultation Comment")
+        verbose_name_plural = _("Consultation Comment")
     
     
     
@@ -78,8 +80,8 @@ class ProjectRequest(models.Model):
 
     
     class Meta:
-        verbose_name = _("Request")
-        verbose_name_plural = _("Requests")
+        verbose_name = _("Project Request")
+        verbose_name_plural = _("Project Request")
 
     def __str__(self):
         return str(self.name)
@@ -89,19 +91,20 @@ class ProjectStatus(models.Model):
 
 
     Project__Status={
-        ('مرحلة إختيار الأرض' , 'مرحلة إختيار الأرض'),
-        ('مرحلة تنظيف الأرض' , 'مرحلة تنظيف الأرض'),
-        ('مرحلة حفر الأساس' , 'مرحلة حفر الأساس'),
-        ('مرحلة تسليح الأساس' , 'مرحلة تسليح الأساس'),
-        ('مرحلة البناء' , 'مرحلة البناء'),
-        ('مرحلة وضع البنية التحتية' , 'مرحلة وضع البنية التحتية'),
-        ('مرحلة التشطيبات' , 'مرحلة التشطيبات'),
-        ('الإنتهاء من البناء' , 'الإنتهاء من البناء'),
-        ('تسليم العمل' , 'تسليم العمل'),
+        ('1' , 'مرحلة إختيار الأرض'),
+        ('2' , 'استلام الارض'),
+        ('3' , 'مرحلة تنظيف الأرض'),
+        ('4' , 'مرحلة حفر الأساس'),
+        ('5' , 'مرحلة تسليح الأساس'),
+        ('6' , 'مرحلة البناء'),
+        ('7' , 'مرحلة وضع البنية التحتية'),
+        ('8' , 'مرحلة التشطيبات'),
+        ('9' , 'الإنتهاء من البناء'),
+        ('10' , 'تسليم العمل'),
        
     }
     
-    projectstatus      = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
+    projectrequest      = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
     request_status     = models.CharField(_("حالة المرحلة ") , choices=Project__Status, max_length=150)
     image_status     = models.ImageField(_("صورة للمرحلة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("وصف المرحلة"))
@@ -109,9 +112,21 @@ class ProjectStatus(models.Model):
     create_at          = models.DateTimeField(_("تاريخ الطلب"), default = timezone.now) 
 
     def __str__(self):
-        return str(self.projectstatus)
+        return str(self.projectrequest.name) 
     
+    class Meta:
+        verbose_name = _("Project Status")
+        verbose_name_plural = _("Project Status")
     
+    def get_choices_list(self, user_input):
+        my_list = []
+        for choice in self.Project__Status:
+            if user_input == choice[0]:
+                my_list.append(choice["1"])
+        return my_list
+
+
+
 class Contracts_Guarantees(models.Model):
     
     contracts_guarantees  = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
@@ -124,14 +139,24 @@ class Contracts_Guarantees(models.Model):
     def __str__(self):
         return str(self.contracts_guarantees)
     
+    class Meta:
+        verbose_name = _("Contracts Guarantees")
+        verbose_name_plural = _("Contracts Guarantees")
+
+
     
 class ProjectMeetings(models.Model):
     
-    meetings  = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
+    project_meetings  = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
     name        = models.CharField(_("عنوان الاجتماع"), max_length=50)
     description        = models.TextField(_("موضوع الاجتماع"))
+    meetingsLink        = models.URLField(("رابط الاجتماع"), max_length=200)
     update_at          = models.DateTimeField(_("أخر تحديث للطلب"), default = timezone.now) 
     create_at          = models.DateTimeField(_("تاريخ الطلب"), default = timezone.now) 
 
     def __str__(self):
-        return str(self.meetings)
+        return str(self.name)
+    
+    class Meta:
+        verbose_name = _("Project Meetings")
+        verbose_name_plural = _("Project Meetings")

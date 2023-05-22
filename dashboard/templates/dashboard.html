@@ -12,7 +12,9 @@
 
 <-- section 1-->
 <section class="ul-widget-stat-s1">
-<div class="row">
+<div class="row"> 
+    {% if request.user.is_superuser or user_profile.userType == "شركة" %}
+
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
             <div class="card-body text-center"><i class="i-Add-User"></i>
@@ -23,8 +25,9 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
-    
+    {% if request.user.is_superuser %}
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
             <div class="card-body text-center"><i class="i-Suitcase"></i>
@@ -46,13 +49,23 @@
             </div>
         </div>
     </div>
-    
+    {% endif %}
 
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
             <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
                 <div class="content">
-                    <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "request:request_list" %}{% endif %}'>الطلبات</a></p>
+                    <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "request:request_list" %}{% endif %}'>الإستشارات</a></p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{{User_request_list}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
+            <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
+                <div class="content">
+                    <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "orders:project_request_orders" %}{% endif %}'>طلبيات المشاريع</a></p>
                     <p class="text-primary text-24 line-height-1 mb-2">{{User_request_list}}</p>
                 </div>
             </div>

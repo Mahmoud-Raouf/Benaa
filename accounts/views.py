@@ -16,11 +16,7 @@ def company_list(request):
     return render(request ,'company/company_list.html', {
         'company_list' : company_list ,
         'title' : 'كل الشركات',
-
     })
-    
-    
-    
     
 def outstanding_companies(request):
     outstanding_companies  = Company.objects.filter(company_request = False)
@@ -141,9 +137,3 @@ def logout(request):
     return redirect('accounts:login')
 # End Auth
 
-def project_Steps(request):
-
-    return render(request ,'company/project_Steps_liner.html', {
-        'title' : 'العملاء',
-
-    })

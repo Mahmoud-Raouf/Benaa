@@ -19,7 +19,6 @@ urlpatterns = [
     path('login/' , views.user_login, name='login'),
     path('logout/' , views.logout, name='logout'),
     # end Auth
-    path('project_Steps/' , views.project_Steps, name='project_Steps'),
 
 
 ]

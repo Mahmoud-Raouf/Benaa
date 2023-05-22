@@ -1,0 +1,48 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block 'body' %}
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+
+<div class="main-content">
+    <div class="breadcrumb">
+        <h1>طلب إجتماع من ادارة المشروع :   {{ProjectRequestid.name}} </h1>
+
+    </div>
+    <div class="separator-breadcrumb border-top"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-5">
+                <div class="card-body">
+                   <h6>رقم الطلب : {{ProjectRequestid.code}}</h6>
+                   <h6>تاريخ الطلب : {{ProjectRequestid.create_at}}</h6>
+                   <h6>__________________________________________</h6>
+                   <h4 style="color:green">الرد  : </h4>
+
+                   <br>
+                   <h5>عنوان الاجتماع :{{project_meetings.name}}</h5>
+                   <br>
+
+                   <h5>موضوع الاجتماع :{{project_meetings.description}}</h5>
+                   <h6>__________________________________________</h6>
+                   <br>
+
+                   <h5>اخر تحديث : {{project_meetings.update_at}}</h5>
+                   <h6>__________________________________________</h6>
+                   <br>
+
+                   <h6>تم النشاء فى : {{project_meetings.create_at}}</h6>
+                   <h6>رابط الإجتماع : <a href="{{project_meetings.meetingsLink}}">{{project_meetings.meetingsLink}}<a></h6>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div><!-- Footer Start -->
+
+
+{% endblock %}

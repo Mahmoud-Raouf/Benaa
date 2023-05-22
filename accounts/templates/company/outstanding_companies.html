@@ -49,7 +49,7 @@
                                                 {% if Company.Company_image %}
                                                 <td><img class="rounded-circle m-0 avatar-sm-table" src="{{Company.Company_image.url}}" alt="" /></td>
                                                     {% else %}
-                                                    <td><img class="rounded-circle m-0 avatar-sm-table"  src="{% static 'dist-assets/images/default_image/No_image_available.png" alt="" /></td>
+                                                    <td><img class="rounded-circle m-0 avatar-sm-table"  src="{% static 'dist-assets/images/default_image/No_image_available.png' %}" alt="" /></td>
 
                                                 {% endif %}
                                                 <td>{{Company.code}}</td>

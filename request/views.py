@@ -20,12 +20,12 @@ def request_list(request):
     
     
 def comment_display(request , id):
-    consultationRequest  = get_object_or_404(ConsultationRequest, id=id)
-    comment_display = ConsultationComment.objects.get(consultationrequest=consultationRequest)
+    consultationid  = get_object_or_404(ConsultationRequest, id=id)
+    comment_display = ConsultationComment.objects.get(consultationrequest=consultationid)
 
 
     return render(request ,'consultation_request/display_comment.html', {
-        'consultationRequest' : consultationRequest ,
+        'consultationid' : consultationid ,
         'comment_display' : comment_display ,
         'title' : 'الطلبات',
 
@@ -92,17 +92,17 @@ def project_request_list(request):
     })
     
     
-def comment_display(request , id):
-    projectRequest  = get_object_or_404(ProjectRequest, id=id)
-    comment_display = ConsultationComment.objects.get(consultationrequest=projectRequest)
+# def comment_Project_display(request , id):
+#     projectRequest  = get_object_or_404(ProjectRequest, id=id)
+#     comment_Project_display = ConsultationComment.objects.get(consultationrequest=projectRequest)
 
 
-    return render(request ,'consultation_request/display_comment.html', {
-        'projectRequest' : projectRequest ,
-        'comment_display' : comment_display ,
-        'title' : 'الطلبات',
+#     return render(request ,'consultation_request/display_comment.html', {
+#         'projectRequest' : projectRequest ,
+#         'comment_Project_display' : comment_Project_display ,
+#         'title' : 'الطلبات',
 
-    })
+#     })
     
     
 def add_Project_Request(request ,id=id):
