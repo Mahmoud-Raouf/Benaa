@@ -39,12 +39,12 @@ class Profile(models.Model):
     }
 
     user = models.OneToOneField(User , verbose_name=("user_profile"), on_delete=models.CASCADE)
-    image = models.ImageField(("الصوره : "), upload_to='user-image')
-    name = models.CharField(max_length=50)
-    phone = models.CharField(_("رقم الهاتف "),max_length=50)
+    image = models.ImageField(("الصوره"), upload_to='user-image')
+    name = models.CharField(("الإسم ثلاثي"), max_length=50)
+    phone = models.CharField(_("رقم الهاتف"),max_length=50)
     userType = models.CharField(choices=userType , default='عميل',max_length=50, blank=True, null=True)
-    country = models.CharField(max_length=50, blank=True, null=True)
-    address = models.CharField(max_length=50, blank=True, null=True)
+    country = models.CharField(("الدولة"), max_length=50, blank=True, null=True)
+    address = models.CharField(("المنطقة"), max_length=50, blank=True, null=True)
     slug = models.SlugField(("Slug :"),blank=True, null=True)
 
     def __str__(self):

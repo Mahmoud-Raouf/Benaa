@@ -1,5 +1,5 @@
 from django import forms
-from .models import Company 
+from .models import * 
 from django.contrib.auth.models import User
 
 class CompanyForm(forms.ModelForm):
@@ -13,4 +13,17 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("username" , "password")
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("username" , "email")
+
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ("name" , "phone", "country", "address", "image")
 

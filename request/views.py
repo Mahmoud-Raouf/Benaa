@@ -4,13 +4,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from request.forms import RequestForm
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 
 
 #  Consultation Start Request
-
+@login_required
 def request_list(request):
-    request_list  = ConsultationRequest.objects.filter(user = request.user)
+    request_list  = ConsultationRequest.objects.all()
 
     return render(request ,'consultation_request/my_request_list.html', {
         'request_list' : request_list ,
@@ -18,7 +19,7 @@ def request_list(request):
 
     })
     
-    
+@login_required 
 def comment_display(request , id):
     consultationid  = get_object_or_404(ConsultationRequest, id=id)
     comment_display = ConsultationComment.objects.get(consultationrequest=consultationid)
@@ -31,7 +32,7 @@ def comment_display(request , id):
 
     })
     
-    
+@login_required 
 def add_request(request ,id=id):
     company = Company.objects.get(id = id)
     request_form = RequestForm(request.POST or None , request.FILES)
@@ -52,7 +53,7 @@ def add_request(request ,id=id):
     })
     
 
-
+@login_required
 def add_comment_to_ConsultationRequest(request, pk):
     product = get_object_or_404(ConsultationRequest, pk=pk)
     if request.method == 'POST':
@@ -68,7 +69,7 @@ def add_comment_to_ConsultationRequest(request, pk):
     
     
     
-    
+@login_required 
 def request_delete(request , pk):
     request_delete = ConsultationRequest.objects.get(pk=pk)
     request_delete.delete()
@@ -81,7 +82,7 @@ def request_delete(request , pk):
 
 
 # Start Request Project
-
+@login_required
 def project_request_list(request):
     project_request_list  = ProjectRequest.objects.filter(user = request.user)
 
@@ -104,7 +105,7 @@ def project_request_list(request):
 
 #     })
     
-    
+@login_required 
 def add_Project_Request(request ,id=id):
     company = Company.objects.get(id = id)
     request_form = ProjectRequestForm(request.POST or None , request.FILES)
@@ -125,7 +126,7 @@ def add_Project_Request(request ,id=id):
     })
     
 
-
+@login_required
 def add_Update_Project_Status(request, id):
     projectstatusId = get_object_or_404(ProjectRequest, pk=id)
     form = ProjectStatusForm(request.POST, request.FILES)
@@ -141,7 +142,7 @@ def add_Update_Project_Status(request, id):
         form = ProjectStatusForm()
     return render(request, 'project_request/add_Update_Project_Status.html', {'form': form})
     
-    
+@login_required 
 def add_Contracts_Guarantees(request, id):
     projectstatusId = get_object_or_404(ProjectRequest, pk=id)
     if request.method == 'POST':
@@ -155,7 +156,7 @@ def add_Contracts_Guarantees(request, id):
     return render(request, 'project_request/add_Contracts_Guarantees.html', {'form': form})
     
     
-    
+@login_required  
 def add_Project_Meetings(request, id):
     projectstatusId = get_object_or_404(ProjectRequest, pk=id)
     if request.method == 'POST':
@@ -170,7 +171,7 @@ def add_Project_Meetings(request, id):
     
     
     
-    
+@login_required 
 def request_delete(request , pk):
     request_delete = ConsultationRequest.objects.get(pk=pk)
     request_delete.delete()

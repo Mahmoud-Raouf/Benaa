@@ -1,0 +1,92 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block 'body' %}
+<div class="main-content-wrap sidenav-open d-flex flex-column">
+
+<div class="main-content">
+                <div class="breadcrumb">
+                    <h1>صفحتك الشخصية</h1>
+                    <ul>
+                        <li>| {{profile.name}}</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <div class="card user-profile o-hidden mb-4">
+                    
+                    <div class="header-cover" style="background-image:{% static 'dist-assets/images/photo-wide-4.jpg' %}"></div>
+                    <div class="user-info">
+                        {% if profile.image %}
+                        <img class="profile-picture avatar-lg mb-2" src="{{profile.image.url}}" alt="" />
+                        {% endif %}
+                        <p class="m-0 text-24">{{profile.name}}</p>
+                        <p class="m-0 text-24">{{profile.phone}}</p>
+                        <p class="text-muted m-0">{{ request.user.email }}</p>
+                        {% if request.user.is_superuser %}
+                        <p class="text-muted m-0">نوع حسابك :: <span style="color:red;">أدمن</span> </p>
+                        {% else %}
+                        
+                        <p class="text-muted m-0">نوع حسابك :: <span style="color:blue;">{{ profile.userType }}</span> </p>
+                        {% endif %}
+
+                        <br>
+                        <div class="tab-pane fade active show" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+                                
+                                
+                            <ul class="timeline clearfix">
+                                <li class="timeline-line"></li>
+                                <li class="timeline-group text-center">
+                                    <button class="btn btn-icon-text btn-warning"><i class="i-Calendar-4"></i> Joined
+                                        in {{ request.user.date_joined|date:"F j, Y" }}
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                                
+                    
+
+                    <div class="container">
+                        <div class="row justify-content-center" style="display:block !importtant">
+                          <div class="col-md-9">
+                            <ul class="">
+                                <div class="timeline-card card">
+                                  <div class="card-body">
+                                    <div class="mb-1"><strong class="mr-1"></strong> يمكنك تعديل المعلومات الخاصة بك من هنا 
+                                      <p class="text-muted"></p>
+                                    </div>
+                                    <form  method="POST" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                        {% bootstrap_form user_form %}
+                                        {% bootstrap_form profile_form %}
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button class="btn btn-primary" type="submit">حفظ التعديلات</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+                                  </div>
+                                </div>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <style>
+                       .card {
+                          margin: auto;
+                        }
+                      </style>
+                </div><!-- end of main-content -->
+            </div><!-- Footer Start -->
+            <div class="flex-grow-1"></div>
+           
+            <!-- fotter end -->
+        </div>
+    </div><!-- ============ Search UI Start ============= -->
+
+
+    {% endblock %}

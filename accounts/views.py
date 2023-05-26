@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.shortcuts import render ,redirect
-from .forms import UserForm
+from .forms import *
 from django.contrib.auth import authenticate , login
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
@@ -94,6 +94,29 @@ def users(request):
 
     })
     
+# Start Auth
+def profile(request):
+    profile  = Profile.objects.get(user = request.user)
+
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save()
+            return redirect('profile')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=request.user.profile)
+
+    return render(request ,'registration/user_profile.html', {
+        'profile' : profile ,
+        'user_form' : user_form ,
+        'profile_form' : profile_form ,
+        'title' : 'العملاء',
+
+    })
+    
     
 def signup(request):
     if request.method == "POST":
@@ -134,6 +157,6 @@ def user_login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('accounts:login')
+    return redirect('users:login')
 # End Auth
 

@@ -11,252 +11,335 @@
     </div>
     <div class="separator-breadcrumb border-top"></div>
         
-    <div class="container-fluid">
+    <div class="container">
 
-<div class="wrapper">
+    <div class="col-lg-12" >
+<div class="container col-lg-12">
+        <div class="main-container cpl-lg-12">
+            <div class="steps-container">
+                {% if project_status.request_status == '1' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        إختيار الأرض
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        إختيار الأرض
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
 
-    <div class="main-container">
-        <div class="steps-container">
-            {% if project_status.request_status == '1' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    إختيار الأرض
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    إختيار الأرض
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
+                <div class="line completed"></div>
+                {% endif %}
 
-            <div class="line completed"></div>
+                {% if project_status.request_status == '2' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        استلام الارض
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        استلام الارض
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
             {% endif %}
+                {% if project_status.request_status == '3' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        تنظيف الارض
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
 
-            {% if project_status.request_status == '2' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    استلام الارض
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        تنظيف الارض
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
+                {% endif %}
+
+                {% if project_status.request_status == '4' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        حفر الاساس
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
                 </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        حفر الاساس
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
+                {% endif %}
+
+                {% if project_status.request_status == '5' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        تسليح الاساس
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
                 </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        تسليح الاساس
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
+                {% endif %}
+
+                {% if project_status.request_status == '6' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        مرحلة البناء
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        مرحلة البناء
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
+                {% endif %}
+
+                {% if project_status.request_status == '7' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        وضع البنية التحيحة
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        وضع البنية التحيحة
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                <div class="line completed"></div>
+                {% endif %}
+
+                {% if project_status.request_status == '8' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        التشطيبات
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        التشطيبات
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+                <div class="line completed"></div>
+
+                {% endif %}
+                {% if project_status.request_status == '9' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        الإنتهاء من العمل
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        الإنتهاء من العمل
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+                <div class="line completed"></div>
+
+                {% endif %}
+                {% if project_status.request_status == '8' %}
+                <div class="step in-progress">
+                    <div class="preloader"></div>
+                    <div class="label loading">
+                        تسليم العمل
+                    </div>
+                    <div class="icon in-progress">
+                        <i class="far fa-money-bill-alt"></i>
+                    </div>
+                </div>
+                <div class="line prev-step-in-progress"></div>
+
+                {% else %}
+                <div class="step completed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
+                    </svg>
+                    <div class="label completed">
+                        تسليم العمل
+                    </div>
+                    <div class="icon completed">
+                        <i class="far fa-handshake"></i>
+                    </div>
+                </div>      
+
+                {% endif %}
+                
+                
             </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    استلام الارض
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-{% endif %}
-            {% if project_status.request_status == '3' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    تجهيز الارض
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    تجهيز الارض
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-            {% endif %}
-
-            {% if project_status.request_status == '4' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    حفر الارض
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    حفر الارض
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-            {% endif %}
-
-            {% if project_status.request_status == '5' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    تسليح الاساسيات
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    تسليح الاساسيات
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-            {% endif %}
-
-            {% if project_status.request_status == '6' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    البناء
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    البناء
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-            {% endif %}
-
-            {% if project_status.request_status == '7' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    صب السقف الخرسانى
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    صب السقف الخرسانى
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            <div class="line completed"></div>
-            {% endif %}
-
-            {% if project_status.request_status == '8' %}
-            <div class="step in-progress">
-                <div class="preloader"></div>
-                <div class="label loading">
-                    التشطيب
-                </div>
-                <div class="icon in-progress">
-                    <i class="far fa-money-bill-alt"></i>
-                </div>
-            </div>
-            <div class="line prev-step-in-progress"></div>
-
-            {% else %}
-            <div class="step completed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                </svg>
-                <div class="label completed">
-                    التشطيب
-                </div>
-                <div class="icon completed">
-                    <i class="far fa-handshake"></i>
-                </div>
-            </div>      
-
-            {% endif %}
-            
-            {% comment %} <div class="step">
-                <div class="label">
-                    التشطيب
-                </div>
-                <div class="icon">
-                    <i class="fas fa-home"></i>
-                </div>
-            </div> {% endcomment %}
         </div>
+        
+
+
+        
     </div>
-    </div>
-                <!-- END EDMO HTML (Happy Coding!)-->
-            </main>
-            
-            <!-- Script JS -->
-            <script src="./js/script.js"></script>
-            <!--$%analytics%$-->
+    <div class="main-content-wrap ">
+    
+        <div class="main-content">
+            <div class="breadcrumb">
+                <h1>تفاصيل مشروع :   {{ProjectRequestid.name}} </h1>
+        
+            </div>
+            <div class="separator-breadcrumb border-top" style="width:30rem"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                           <h6>رقم الطلب : {{ProjectRequestid.code}}</h6>
+                           <h6>تاريخ الطلب : {{ProjectRequestid.create_at}}</h6>
+                           <h6>__________________________________________</h6>
+        
+        
+                           <h6>أخر التحديث فى : {{project_status.update_at}}</h6>
+                           <h6>__________________________________________</h6>
+                           <br>
+                           <h6>وصف المرحلة : {{project_status.description}}</h6>
+                           <h6>__________________________________________</h6>
+                           <br>
+        
+                           <h5 style="color:red">صورة المرحلة  : </h5>
+                           {% if project_status.image_status %}
+                           <img src="{{project_status.image_status.url}}">
+                           {% endif %}
+        
+        
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        
+        </div><!-- Footer Start -->
 </div>
-</div>
+
 </div>
 
 {% endblock %}

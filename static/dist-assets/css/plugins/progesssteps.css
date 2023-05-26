@@ -90,7 +90,7 @@
   background: var(--background-modal-color);
   height: 220px;
   min-width: 420px;
-  max-width: 750px;
+  max-width:1129px;
   flex-grow: 1;
   border-radius: 5px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.14);
