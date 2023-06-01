@@ -38,10 +38,10 @@
                 <!-- Full screen toggle -->
                 <i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen></i>
                 <!-- Grid menu Dropdown -->
-                <a  href="{% url 'users:profile' %}" ><span class="nav-text">مرحباً {{request.user.profile.name}} |  </span></a>    
+                <a  href="{% url 'users:profile' %}" ><span class="nav-text">مرحباً {{request.user.profile.name}}  </span></a>    
                 {% if request.user.is_superuser %}
       
-                <a  href="{% url 'admin:index' %}" ><span class="nav-text ml-2" style="color:red;"> صفحة الأدمن </span></a>  
+                <a  href="{% url 'admin:index' %}" ><span class="nav-text ml-2" style="color:red;"> صفحة الأدمن | </span></a>  
                 {% endif %}
         
                  <!-- User avatar dropdown -->
@@ -79,14 +79,14 @@
 
 
 
-                    {% if user_profile.userType == "شركة" %}
+                    {% if profile_fields.userType == "شركة" and not request.user.is_superuser %}
 
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'request:project_request_list' %}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">مشاريع العملاء</span></a>
                         <div class="triangle"></div>
                     </li>
                     
                     {% endif %}
-                    {% if user_profile.userType == "عميل" %}
+                    {% if profile_fields.userType == "عميل" and not request.user.is_superuser %}
 
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:project_request_orders' %}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">مشاريعك</span></a>
                         <div class="triangle"></div>
@@ -94,7 +94,7 @@
                     {% endif %}
 
 
-                    {% if user_profile.userType == "شركة" %}
+                    {% if profile_fields.userType == 'شركة' and not request.user.is_superuser %}
 
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:request_order_for_company' %}"><i class="nav-icon i-File"></i><span class="nav-text">إستشارات العملاء</span></a>
                         <div class="triangle"></div>
@@ -102,7 +102,7 @@
                    
                     {% endif %}
 
-                    {% if user_profile.userType == "عميل" %}
+                    {% if profile_fields.userType == "عميل" and not request.user.is_superuser %}
 
                     
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:user_request_consultation_list' %}"><i class="nav-icon i-File"></i><span class="nav-text">إستشاراتك</span></a>

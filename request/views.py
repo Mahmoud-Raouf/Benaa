@@ -141,45 +141,87 @@ def add_Project_Request(request ,id=id):
 
 @login_required
 def add_Update_Project_Status(request, id):
-    projectstatusId = get_object_or_404(ProjectRequest, pk=id)
-    form = ProjectStatusForm(request.POST, request.FILES)
+    projectRequestId = get_object_or_404(ProjectRequest, pk=id)
+    try:
+        projectStatus = ProjectStatus.objects.get(projectrequest=projectRequestId)
+    except ProjectStatus.DoesNotExist:
+        projectStatus = None
 
     if request.method == 'POST':
-        form = ProjectStatusForm(request.POST, request.FILES)
-
+        form = ProjectStatusForm(request.POST, request.FILES, instance=projectStatus)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.projectstatus = projectstatusId
-            comment.save()
+            projectStatus = form.save(commit=False)
+            projectStatus.projectrequest = projectRequestId
+            projectStatus.save()
+            return redirect('request:project_request_list')  
     else:
-        form = ProjectStatusForm()
+        form = ProjectStatusForm(instance=projectStatus)
     return render(request, 'project_request/add_Update_Project_Status.html', {'form': form})
     
+
+
+
+
+
+
+
+
 @login_required 
 def add_Contracts_Guarantees(request, id):
-    projectstatusId = get_object_or_404(ProjectRequest, pk=id)
+    projectRequestId = get_object_or_404(ProjectRequest, pk=id)
+    try:
+        contractsguarantees = Contracts_Guarantees.objects.get(contracts_guarantees=projectRequestId)
+    except Contracts_Guarantees.DoesNotExist:
+        contractsguarantees = None
+
     if request.method == 'POST':
-        form = Contracts_GuaranteesForm(request.POST)
+        form = Contracts_GuaranteesForm(request.POST, request.FILES, instance=contractsguarantees)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.contracts_guarantees = projectstatusId
-            comment.save()
+            contractsguarantees = form.save(commit=False)
+            contractsguarantees.contracts_guarantees = projectRequestId
+            contractsguarantees.save()
+            return redirect('request:project_request_list')  # Replace 'request:project_request_list' with the appropriate URL for your project request list view
+
     else:
-        form = Contracts_GuaranteesForm()
+        form = Contracts_GuaranteesForm(instance=contractsguarantees)
+
     return render(request, 'project_request/add_Contracts_Guarantees.html', {'form': form})
     
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @login_required  
 def add_Project_Meetings(request, id):
-    projectstatusId = get_object_or_404(ProjectRequest, pk=id)
+    projectrequestId = get_object_or_404(ProjectRequest, pk=id)
+    try:
+        projectmeetings = ProjectMeetings.objects.get(project_meetings=projectrequestId)
+    except ProjectMeetings.DoesNotExist:
+        projectmeetings = None
+
     if request.method == 'POST':
-        form = ProjectMeetingsForm(request.POST)
+        form = ProjectMeetingsForm(request.POST, instance=projectmeetings)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.contracts_guarantees = projectstatusId
-            comment.save()
+            projectmeetings = form.save(commit=False)
+            projectmeetings.project_meetings = projectrequestId
+            projectmeetings.save()
+            return redirect('request:project_request_list')  # Replace 'request:project_request_list' with the appropriate URL for your project request list view
+
     else:
-        form = ProjectMeetingsForm()
+        form = ProjectMeetingsForm(instance=projectmeetings)
     return render(request, 'project_request/add_Project_Meetings.html', {'form': form})
     
     

@@ -104,7 +104,7 @@ class ProjectStatus(models.Model):
        
     }
     
-    projectrequest      = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
+    projectrequest      = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
     request_status     = models.CharField(_("حالة المرحلة ") , choices=Project__Status, max_length=150)
     image_status     = models.ImageField(_("صورة للمرحلة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("وصف المرحلة"))
@@ -129,7 +129,7 @@ class ProjectStatus(models.Model):
 
 class Contracts_Guarantees(models.Model):
     
-    contracts_guarantees  = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
+    contracts_guarantees  = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
     image_status     = models.ImageField(_("صورة العقد"), upload_to=None, height_field=None, width_field=None, max_length=None)
     materials_used     = models.ImageField(_("المواد المستخدمة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("الضمنات"))
@@ -147,7 +147,7 @@ class Contracts_Guarantees(models.Model):
     
 class ProjectMeetings(models.Model):
     
-    project_meetings  = models.ForeignKey(ProjectRequest,  on_delete=models.CASCADE)
+    project_meetings  = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
     name        = models.CharField(_("عنوان الاجتماع"), max_length=50)
     description        = models.TextField(_("موضوع الاجتماع"))
     meetingsLink        = models.URLField(("رابط الاجتماع"), max_length=200)

@@ -68,7 +68,7 @@
             <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
                 <div class="content">
                     <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "orders:user_request_consultation_list" %}{% endif %}'>الإستشارات</a></p>
-                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{consultation_requests_company_count}}{% else %}{{Consultation_count}}{% endif %}</p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{consultation_requests_company_count}}{% else %}{{consultation_requests_company_count}}{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
             <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
                 <div class="content">
                     <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "request:project_request_list" %}{% else %}{% url "orders:project_request_orders" %}{% endif %}'>طلبيات المشاريع</a></p>
-                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{projectRequest_company_count}}{% else %}{{Project_count}}{% endif %}</p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{projectRequest_company_count}}{% else %}{{projectRequest_company_count}}{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -107,3 +107,7 @@
 </div>
 </div><!-- ============ Search UI Start ============= -->
 {% endblock %}
+
+
+
+

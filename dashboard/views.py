@@ -9,7 +9,7 @@ from request.models import ConsultationRequest, ProjectRequest
 
 @login_required
 def dashboard(request):
-
+    user = Profile.objects.get(user = request.user)
     Company_sum = Company.objects.all().count()
     pending_company = Company.objects.filter(company_request = False).count()
     accepted_company = Company.objects.filter(company_request = True).count()
@@ -19,9 +19,37 @@ def dashboard(request):
     Project_count  = ProjectRequest.objects.all().count()
     user_profile = Profile.objects.get(user=request.user)
 
-    company = Company.objects.get(user = request.user)    
-    consultation_requests_company_count = ConsultationRequest.objects.filter(company=company).count()
-    projectRequest_company_count = ProjectRequest.objects.filter(company=company).count()
+    if user.userType == 'شركة':
+        try:
+            company = Company.objects.get(user=request.user)
+        except Company.DoesNotExist:
+            company = None    
+
+        try:
+            consultation_requests_company_count = ConsultationRequest.objects.filter(company=company).count()
+        except consultation_requests_company_count.DoesNotExist:
+            consultation_requests_company_count = None    
+
+        try:
+            projectRequest_company_count = ProjectRequest.objects.filter(company=company).count()
+        except projectRequest_company_count.DoesNotExist:
+            projectRequest_company_count = None    
+    else:
+        consultation_requests_company_count = 0    
+        projectRequest_company_count = 0    
+    if user.userType == 'عميل':
+        try:
+            consultation_requests_company_count = ConsultationRequest.objects.filter(user=request.user).count()
+        except consultation_requests_company_count.DoesNotExist:
+            consultation_requests_company_count = None    
+
+        try:
+            projectRequest_company_count = ProjectRequest.objects.filter(user=request.user).count()
+        except projectRequest_company_count.DoesNotExist:
+            projectRequest_company_count = None    
+    else:
+        consultation_requests_company_count = 0    
+        projectRequest_company_count = 0    
 
     return render(request , 'dashboard.html' , {
         'Company_sum' : Company_sum ,
