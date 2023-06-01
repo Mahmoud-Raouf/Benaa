@@ -52,7 +52,7 @@ def add_request(request ,id=id):
         request_form = RequestForm()
     return render(request ,'consultation_request/add_request.html', {
         'request_form' : request_form ,
-        'title' : 'إضافة طلب إستشارة',
+        'title' : 'اضافة طلب إستشارة',
     })
     
 
