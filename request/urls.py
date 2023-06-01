@@ -10,8 +10,8 @@ urlpatterns = [
     path('add_request/<int:id>/' , views.add_request, name= 'add_request'),
     path('request_delete/<int:pk>/' , views.request_delete, name= 'request_delete'),
     # end Request
-    path('request/<int:pk>/comment/', views.add_comment_to_ConsultationRequest, name='add_comment_to_ConsultationRequest'),
-    path('<int:id>/comment_display/', views.comment_display, name='comment_display'),
+    path('<int:pk>/comment/', views.add_comment_to_ConsultationRequest, name='add_comment_to_ConsultationRequest'),
+    path('comment_display/<int:id>/', views.comment_display, name='comment_display'),
     
     # Start Project Request
     path('project_request_list/' , views.project_request_list, name= 'project_request_list'),

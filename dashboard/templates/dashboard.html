@@ -10,7 +10,7 @@
 </div>
 
 
-<-- section 1-->
+< section 1-->
 <section class="ul-widget-stat-s1">
 <div class="row"> 
     {% if request.user.is_superuser or user_profile.userType == "شركة" %}
@@ -19,8 +19,8 @@
         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
             <div class="card-body text-center"><i class="i-Add-User"></i>
                 <div class="content">
-                    <p class="text-muted mt-2 mb-0"><a href="{% url 'users:users' %}">العملاء</a></p>
-                    <p class="text-primary text-24 line-height-1 mb-2">{{User_sum}}</p>
+                    <p class="text-muted mt-2 mb-0"><a href="{% if user_profile.userType == 'شركة' %}{% url 'users:company_users' %}{% else %}{% url 'users:users' %}{% endif %}">العملاء</a></p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{consultation_requests_company_count}}{% else %}{{User_sum}}{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
                 <div class="content">
                     <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "orders:user_request_consultation_list" %}{% endif %}'>الإستشارات</a></p>
-                    <p class="text-primary text-24 line-height-1 mb-2">{{User_request_list}}</p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{consultation_requests_company_count}}{% else %}{{Consultation_count}}{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -85,14 +85,15 @@
                 </div>
             </div>
         </div>
-    </div>    {% else %}
+    </div>   
+     {% else %}
 
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
             <div class="card-body text-center"><i class="i-File-Horizontal-Text"></i>
                 <div class="content">
-                    <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "orders:request_order_for_company" %}{% else %}{% url "orders:project_request_orders" %}{% endif %}'>طلبيات المشاريع</a></p>
-                    <p class="text-primary text-24 line-height-1 mb-2">{{User_request_list}}</p>
+                    <p class="text-muted mt-2 mb-0"><a href='{% if user_profile.userType == "شركة" %}{% url "request:project_request_list" %}{% else %}{% url "orders:project_request_orders" %}{% endif %}'>طلبيات المشاريع</a></p>
+                    <p class="text-primary text-24 line-height-1 mb-2">{% if user_profile.userType == 'شركة' %}{{projectRequest_company_count}}{% else %}{{Project_count}}{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -102,23 +103,6 @@
 </section>
 <!-- end:: section 1-->
 
-
-<!-- end of main-content -->
-</div><!-- Footer Start -->
-<div class="flex-grow-1"></div>
-<div class="app-footer">
-<div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center">
-<a class="btn btn-primary text-white btn-rounded" href="https://themeforest.net/item/gull-bootstrap-laravel-admin-dashboard-template/23101970" target="_blank">Buy Gull HTML</a>
-<span class="flex-grow-1"></span>
-<div class="d-flex align-items-center">
-    <img class="logo" src="../../dist-assets/images/logo.png" alt="">
-    <div>
-        <p class="m-0">&copy; 2018 Gull HTML</p>
-        <p class="m-0">All rights reserved</p>
-    </div>
-</div>
-</div>
-</div>
 <!-- fotter end -->
 </div>
 </div><!-- ============ Search UI Start ============= -->

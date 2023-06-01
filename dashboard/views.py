@@ -19,6 +19,9 @@ def dashboard(request):
     Project_count  = ProjectRequest.objects.all().count()
     user_profile = Profile.objects.get(user=request.user)
 
+    company = Company.objects.get(user = request.user)    
+    consultation_requests_company_count = ConsultationRequest.objects.filter(company=company).count()
+    projectRequest_company_count = ProjectRequest.objects.filter(company=company).count()
 
     return render(request , 'dashboard.html' , {
         'Company_sum' : Company_sum ,
@@ -29,4 +32,6 @@ def dashboard(request):
         'User_request_list' : User_request_list,
         'Consultation_count' : Consultation_count,
         'Project_count' : Project_count,
+        'consultation_requests_company_count' : consultation_requests_company_count,
+        'projectRequest_company_count' : projectRequest_company_count,
     })

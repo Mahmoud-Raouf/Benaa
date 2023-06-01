@@ -8,9 +8,13 @@ from django.contrib.auth.decorators import login_required
 def request_order_for_company(request):
     company = Company.objects.get(user = request.user)    
     request_order_for_company  = ConsultationRequest.objects.filter(company = company)
+    comments = ConsultationComment.objects.filter(consultationrequest__in=request_order_for_company)
+
 
     return render(request ,'request_order_for_company.html', {
         'request_order_for_company' : request_order_for_company ,
+        'comments': comments,
+
         'title' : 'طلبات إستشارة العملاء',
 
     })

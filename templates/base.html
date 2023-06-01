@@ -84,7 +84,10 @@
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'request:project_request_list' %}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">مشاريع العملاء</span></a>
                         <div class="triangle"></div>
                     </li>
-                    {% else %}
+                    
+                    {% endif %}
+                    {% if user_profile.userType == "عميل" %}
+
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:project_request_orders' %}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">مشاريعك</span></a>
                         <div class="triangle"></div>
                     </li>
@@ -96,8 +99,13 @@
                     <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:request_order_for_company' %}"><i class="nav-icon i-File"></i><span class="nav-text">إستشارات العملاء</span></a>
                         <div class="triangle"></div>
                     </li>
-                    {% else %}
-                    <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:request_order_for_company' %}"><i class="nav-icon i-File"></i><span class="nav-text">إستشاراتك</span></a>
+                   
+                    {% endif %}
+
+                    {% if user_profile.userType == "عميل" %}
+
+                    
+                    <li class="nav-item"><a class="nav-item-hold" href="{% url 'orders:user_request_consultation_list' %}"><i class="nav-icon i-File"></i><span class="nav-text">إستشاراتك</span></a>
                         <div class="triangle"></div>
                     </li>
                     {% endif %}

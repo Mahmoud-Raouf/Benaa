@@ -45,11 +45,11 @@
                                             <td>{{request.request_status}}</td>
 
                                             
-
+                                            
                                             <td> <a  class="btn btn-outline-success" href="{% url 'request:comment_display' request.id %}" style="width: 80; height: 15;">
                                                 مشاهدة الرد
                                             </a></td>
-                                                
+
                                             <td><a class="text-danger mr-2" href="{% url 'request:request_delete' request.id %}"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                         </tr>
                                         {% endfor %}

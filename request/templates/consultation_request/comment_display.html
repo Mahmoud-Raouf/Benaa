@@ -20,8 +20,15 @@
                    <h6>رقم الطلب : {{consultationid.code}}</h6>
                    <h6>__________________________________________</h6>
                    <h5>الرد  : </h5>
+                   {% if comment_display %}
+                   
                    <h6>{{comment_display.text}}</h6>
                    <h6>{{comment_display.created_date}}</h6>
+                   {% else %}
+                   <h6 style="color:red;">لا يوجد رد حتى الأن</h6>
+
+                   {% endif %}
+
                 </div>
             </div>
         </div>

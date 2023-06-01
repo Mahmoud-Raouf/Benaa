@@ -8,7 +8,7 @@
     <!-- ============ Body content start ============= -->
     <div class="main-content">
         <div class="breadcrumb justify-content-between">
-            <h1 class="mr-2">المستخدمين</h1>
+            <h1 class="mr-2">كل العملاء لدى شركتك</h1>
             {% comment %} <form action="" class="d-flex">
                 <input type="text" class="form-control form-control-sm">
                 <input type="submit" value="بحث">
@@ -39,7 +39,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for user in users %}
+                                            {% for user in company_users %}
                                             
                                             <tr>
                                                 <th scope="row">{{user.id}}</th>
@@ -63,6 +63,7 @@
                                                 <td><a class="text-success mr-2" href="dashboard1.html#"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="dashboard1.html#"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                             </tr>
                                             {% endfor %}
+                                            
 
                                         </tbody>
                                     </table>

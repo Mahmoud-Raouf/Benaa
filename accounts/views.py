@@ -1,10 +1,13 @@
 from django.shortcuts import redirect, render
 from django.shortcuts import render ,redirect
+
+from request.models import ConsultationRequest, ProjectRequest
 from .forms import *
 from django.contrib.auth import authenticate , login
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from .forms import CompanyForm
 from .models import Company, Profile
@@ -91,6 +94,21 @@ def users(request):
     return render(request ,'registration/users.html', {
         'users' : users ,
         'title' : 'العملاء',
+
+    })
+
+
+
+def company_users(request):
+    company = Company.objects.get(user = request.user)    
+    consultation_requests = ConsultationRequest.objects.filter(company=company)
+    projectRequest = ProjectRequest.objects.filter(company=company)
+    company_users = User.objects.filter(Q(consultationrequest__in=consultation_requests) | Q(projectrequest__in=projectRequest))
+
+
+    return render(request ,'company/company_users.html', {
+        'company_users' : company_users ,
+        'title' : 'عملاء شركتك',
 
     })
     

@@ -15,20 +15,23 @@ def request_list(request):
 
     return render(request ,'consultation_request/my_request_list.html', {
         'request_list' : request_list ,
-        'title' : 'الطلبات',
+        'title' : 'كل طلبات الاستشارة',
 
     })
     
 @login_required 
 def comment_display(request , id):
+    
     consultationid  = get_object_or_404(ConsultationRequest, id=id)
-    comment_display = ConsultationComment.objects.get(consultationrequest=consultationid)
+    try:
+        comment_display = ConsultationComment.objects.get(consultationrequest=consultationid)
+    except ConsultationComment.DoesNotExist:
+        comment_display = None 
 
-
-    return render(request ,'consultation_request/display_comment.html', {
+    return render(request ,'consultation_request/comment_display.html', {
         'consultationid' : consultationid ,
         'comment_display' : comment_display ,
-        'title' : 'الطلبات',
+        'title' : 'الرد الخاص بإستشارتك',
 
     })
     
@@ -43,7 +46,7 @@ def add_request(request ,id=id):
             check_user_request.company = company
             check_user_request.user = request.user
             check_user_request.save()
-            return redirect('request:request_list')
+            return redirect('request:user_request_consultation_list')
 
     else:
         request_form = RequestForm()
@@ -55,17 +58,23 @@ def add_request(request ,id=id):
 
 @login_required
 def add_comment_to_ConsultationRequest(request, pk):
-    product = get_object_or_404(ConsultationRequest, pk=pk)
+
+    consultationrequest = get_object_or_404(ConsultationRequest, pk=pk)
+    comment =consultationrequest.company
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.product = product
+            comment.consultationrequest = consultationrequest
             comment.author = request.user
             comment.save()
+            return redirect("orders:request_order_for_company")
+
     else:
         form = CommentForm()
-    return render(request, 'consultation_request/add_consultation_comment.html', {'form': form})
+    return render(request, 'consultation_request/add_consultation_comment.html', {'form': form,'comment': comment})
+
     
     
     
@@ -82,13 +91,17 @@ def request_delete(request , pk):
 
 
 # Start Request Project
+
+
+
 @login_required
 def project_request_list(request):
-    project_request_list  = ProjectRequest.objects.filter(user = request.user)
+    user_companies = Company.objects.filter(user=request.user)
+    project_request_list = ProjectRequest.objects.filter(company__in=user_companies)
 
     return render(request ,'project_request/my_project_request.html', {
-        'project_request_list' : project_request_list ,
-        'title' : 'طلبات المشاريع',
+        'project_request_list': project_request_list,
+        'title' : 'طلبيات المشاريع',
 
     })
     

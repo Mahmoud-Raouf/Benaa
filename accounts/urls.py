@@ -15,6 +15,7 @@ urlpatterns = [
     
     # Start Auth
     path('users/' , views.users, name='users'),
+    path('company_users/' , views.company_users, name='company_users'),
     path('profile/' , views.profile, name='profile'),
     path('signup/' , views.signup, name='signup'),
     path('login/' , views.user_login, name='login'),
