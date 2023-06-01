@@ -56,18 +56,34 @@
                                             
 
                                             
+                                            {% if project_request.has_project_status %}
                                             <td> <a  class="btn btn-outline-primary" href="{% url 'orders:project_Steps' project_request.id %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                             </a></td>
+                                            {% else %}
+                                            <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                            {% endif %}
+
+                                            {% if project_request.has_contracts_guarantees %}
+
                                             <td> <a  class="btn btn-outline-success" href="{% url 'orders:contracts_guarantees' project_request.id  %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                               </a></td>
+                                              {% else %}
+                                              <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                              {% endif %}
+  
+                                              {% if project_request.has_project_meetings %}
+
                                             <td> <a  class="btn btn-outline-dark   " href="{% url 'orders:project_meetings' project_request.id  %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                               </a></td>
+                                              {% else %}
+                                              <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                              {% endif %}
 
-                                                
-                                            <td><a class="text-danger mr-2" href=""><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                 
+                                            <td><a class="text-danger mr-2" href="{% url 'orders:project_request_delete' project_request.id %}"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

@@ -34,9 +34,9 @@ def dashboard(request):
             projectRequest_company_count = ProjectRequest.objects.filter(company=company).count()
         except projectRequest_company_count.DoesNotExist:
             projectRequest_company_count = None    
-    else:
-        consultation_requests_company_count = 0    
-        projectRequest_company_count = 0    
+
+
+
     if user.userType == 'عميل':
         try:
             consultation_requests_company_count = ConsultationRequest.objects.filter(user=request.user).count()
@@ -47,9 +47,7 @@ def dashboard(request):
             projectRequest_company_count = ProjectRequest.objects.filter(user=request.user).count()
         except projectRequest_company_count.DoesNotExist:
             projectRequest_company_count = None    
-    else:
-        consultation_requests_company_count = 0    
-        projectRequest_company_count = 0    
+
 
     return render(request , 'dashboard.html' , {
         'Company_sum' : Company_sum ,

@@ -41,7 +41,7 @@
                 <a  href="{% url 'users:profile' %}" ><span class="nav-text">مرحباً {{request.user.profile.name}}  </span></a>    
                 {% if request.user.is_superuser %}
       
-                <a  href="{% url 'admin:index' %}" ><span class="nav-text ml-2" style="color:red;"> صفحة الأدمن | </span></a>  
+                <a  href="{% url 'admin:index' %}" ><span class="nav-text ml-2" style="color:red;"> | صفحة الأدمن </span></a>  
                 {% endif %}
         
                  <!-- User avatar dropdown -->

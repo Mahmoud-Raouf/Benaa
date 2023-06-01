@@ -46,7 +46,7 @@ def add_request(request ,id=id):
             check_user_request.company = company
             check_user_request.user = request.user
             check_user_request.save()
-            return redirect('request:user_request_consultation_list')
+            return redirect('dashboard:dashboard')
 
     else:
         request_form = RequestForm()
@@ -82,7 +82,7 @@ def add_comment_to_ConsultationRequest(request, pk):
 def request_delete(request , pk):
     request_delete = ConsultationRequest.objects.get(pk=pk)
     request_delete.delete()
-    return redirect('request:request_list')
+    return redirect('request:user_request_consultation_list')
 
 # end  Consultation Request
 
@@ -129,7 +129,7 @@ def add_Project_Request(request ,id=id):
             check_user_request.company = company
             check_user_request.user = request.user
             check_user_request.save()
-            return redirect('request:request_list')
+            return redirect('users:company_list')
 
     else:
         request_form = ProjectRequestForm()

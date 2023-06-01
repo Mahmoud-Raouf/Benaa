@@ -11,6 +11,7 @@ urlpatterns = [
     path('accepted_companies/' , views.accepted_companies, name= 'accepted_companies'),
     path('add_company/' , views.add_company, name= 'add_company'),
     path('company_delete/<int:pk>/' , views.company_delete, name= 'company_delete'),
+    path('user_delete/<int:pk>/' , views.user_delete, name= 'user_delete'),
     # end company
     
     # Start Auth

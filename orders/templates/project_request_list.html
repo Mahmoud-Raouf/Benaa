@@ -29,7 +29,6 @@
                                             <th scope="col">وصف الطلب </th>
                                             <th scope="col">المدينة </th>
                                             <th scope="col">تاريخ الطلب </th>
-                                            <th scope="col">متابعة حالة الطلب </th>
                                             <th scope="col">الإطلاع على الحالة </th>
                                             <th scope="col" > العقد والضمات والمواد </th>
                                             <th scope="col">الإطلاع على طلبات الاجتماعات </th>
@@ -47,21 +46,33 @@
                                             <td>{{project_request.description}}</td>
                                             <td>{{project_request.city}}</td>
                                             <td>{{project_request.create_at|date:'d-m-Y'}}</td>
-                                            <td>{{project_request.request_status}}</td>
 
-                                            
 
-                                            
+                                            {% if project_request.has_project_status %}
                                             <td> <a  class="btn btn-outline-primary" href="{% url 'orders:project_Steps' project_request.id %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                             </a></td>
+                                            {% else %}
+                                            <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                            {% endif %}
+
+                                            {% if project_request.has_contracts_guarantees %}
+
                                             <td> <a  class="btn btn-outline-success" href="{% url 'orders:contracts_guarantees' project_request.id  %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                               </a></td>
+                                              {% else %}
+                                              <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                              {% endif %}
+  
+                                              {% if project_request.has_project_meetings %}
+
                                             <td> <a  class="btn btn-outline-dark   " href="{% url 'orders:project_meetings' project_request.id  %}" style="width: 80; height: 15;">
                                                 تفاصيل
                                               </a></td>
-
+                                              {% else %}
+                                              <td>لا يوجد تفاصيل<br> حتى الأن</td>
+                                              {% endif %}
                                                 
                                             <td><a class="text-danger mr-2" href=""><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                         </tr>

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from request.models import *
 from django.contrib.auth.decorators import login_required
 
@@ -29,15 +29,33 @@ def user_request_consultation_list(request):
 
     })
 
+
+
+
+
+
 @login_required
 def project_request_list(request):
     project_request_list  = ProjectRequest.objects.all()
 
+    projectrequestids  = ProjectStatus.objects.get(projectrequest__in=project_request_list)
+    contracts_guarantees = Contracts_Guarantees.objects.filter(contracts_guarantees__in=project_request_list)
+    project_meetings = ProjectMeetings.objects.filter(project_meetings__in=project_request_list)
+
     return render(request ,'project_request_list.html', {
         'project_request_list' : project_request_list ,
+        'projectrequestids ' : projectrequestids  ,
+        'contracts_guarantees' : contracts_guarantees ,
+        'project_meetings' : project_meetings ,
+
         'title' : 'كل المشاريع',
 
     })
+
+
+
+
+
 @login_required
 def project_request_orders(request):
     project_request_orders  = ProjectRequest.objects.filter(user = request.user)
@@ -47,6 +65,11 @@ def project_request_orders(request):
         'title' : 'طلبيات مشاريعك',
 
     })
+
+def project_request_delete(request , pk):
+    project_request_delete = ProjectRequest.objects.get(pk=pk)
+    project_request_delete.delete()
+    return redirect('orders:project_request_orders')
 
 @login_required
 def project_status(request , id):

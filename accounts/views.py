@@ -31,6 +31,8 @@ def outstanding_companies(request):
             CompanyItem= Company.objects.get(id=CompanyId)
             CompanyItem.company_request = True
             CompanyItem.save()
+            CompanyItem.update_user_type()
+
             
     if 'Companydelete' in request.POST :
         if request.user.is_authenticated:
@@ -38,6 +40,8 @@ def outstanding_companies(request):
 
             requesItem= Company.objects.get(id=CompanyId)
             requesItem.delete()
+            requesItem.delete_user_type()
+
             
             
     return render(request ,'company/outstanding_companies.html', {
@@ -67,7 +71,7 @@ def add_company(request):
             check_user_company = company_form.save(commit=False)
             check_user_company.user = request.user
             check_user_company.save()
-            return redirect('company:company_list')
+            return redirect('users:company_list')
 
     else:
         company_form = CompanyForm()
@@ -83,7 +87,7 @@ def add_company(request):
 def company_delete(request , pk):
     company_delete = Company.objects.get(pk=pk)
     company_delete.delete()
-    return redirect('company:company_list')
+    return redirect('users:company_list')
 # end company
 
 
@@ -172,9 +176,13 @@ def user_login(request):
         'login_form' : login_form
     })
 
+def user_delete(request , pk):
+    user_delete = User.objects.get(pk=pk)
+    user_delete.delete()
 
 def logout(request):
     auth.logout(request)
     return redirect('users:login')
 # End Auth
+
 

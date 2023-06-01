@@ -85,6 +85,15 @@ class ProjectRequest(models.Model):
 
     def __str__(self):
         return str(self.name)
+        
+    def has_project_status(self):
+        return hasattr(self, 'project_status')
+    
+    def has_contracts_guarantees(self):
+        return hasattr(self, 'contracts_guarantees')
+    
+    def has_project_meetings(self):
+        return hasattr(self, 'project_meetings')
 
 
 class ProjectStatus(models.Model):
@@ -104,7 +113,7 @@ class ProjectStatus(models.Model):
        
     }
     
-    projectrequest      = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
+    projectrequest      = models.OneToOneField(ProjectRequest, related_name='project_status',  on_delete=models.CASCADE)
     request_status     = models.CharField(_("حالة المرحلة ") , choices=Project__Status, max_length=150)
     image_status     = models.ImageField(_("صورة للمرحلة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("وصف المرحلة"))
@@ -129,7 +138,7 @@ class ProjectStatus(models.Model):
 
 class Contracts_Guarantees(models.Model):
     
-    contracts_guarantees  = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
+    contracts_guarantees  = models.OneToOneField(ProjectRequest,  related_name='contracts_guarantees', on_delete=models.CASCADE)
     image_status     = models.ImageField(_("صورة العقد"), upload_to=None, height_field=None, width_field=None, max_length=None)
     materials_used     = models.ImageField(_("المواد المستخدمة"), upload_to=None, height_field=None, width_field=None, max_length=None)
     description        = models.TextField(_("الضمنات"))
@@ -147,7 +156,7 @@ class Contracts_Guarantees(models.Model):
     
 class ProjectMeetings(models.Model):
     
-    project_meetings  = models.OneToOneField(ProjectRequest,  on_delete=models.CASCADE)
+    project_meetings  = models.OneToOneField(ProjectRequest, related_name='project_meetings',   on_delete=models.CASCADE)
     name        = models.CharField(_("عنوان الاجتماع"), max_length=50)
     description        = models.TextField(_("موضوع الاجتماع"))
     meetingsLink        = models.URLField(("رابط الاجتماع"), max_length=200)

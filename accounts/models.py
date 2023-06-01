@@ -28,8 +28,14 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def update_user_type(self):
+        self.user.profile.userType = 'شركة'
+        self.user.profile.save()
 
-
+    def delete_user_type(self):
+        self.user.profile.userType = 'عميل'
+        self.user.profile.save()
 
 class Profile(models.Model):
     
@@ -54,6 +60,8 @@ class Profile(models.Model):
         if not self.slug:
             self.slug = slugify(self.user.username)
         super(Profile, self).save(*args, **kwargs)
+
+
 
 
 
