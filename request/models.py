@@ -35,10 +35,12 @@ class ConsultationRequest(models.Model):
     
     def __str__(self):
         return str(self.name)
-
+    
+    def has_consultation_request(self):
+        return hasattr(self, 'consultation_request')
 
 class ConsultationComment(models.Model):
-    consultationrequest = models.OneToOneField(ConsultationRequest, on_delete=models.CASCADE)
+    consultationrequest = models.OneToOneField(ConsultationRequest, related_name="consultation_request",on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)

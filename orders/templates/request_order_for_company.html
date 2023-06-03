@@ -42,14 +42,16 @@
                                             <td>{{request.description}}</td>
                                             <td>{{request.create_at|date:'d-m-Y'}}</td>
 
-                                            {% if comments|length < 0 %}
-                                            <td><a  class="btn btn-outline-success"  href="{% url 'request:add_comment_to_ConsultationRequest' request.pk %}" style=" height: 15;"  id="Companyupdate" name="Companyupdate">
-                                                الرد على الإستشارة
-                                            </button></td>
+                                            {% if request.has_consultation_request%}
+                                                   
+                                            <td> <a  class="btn btn-outline-success" href="{% url 'request:comment_display' request.id %}" style="width: 80; height: 15;">
+                                                مشاهدة ردك
+                                            </a></td>
                                                 {% else %}
-                                                <td> <a  class="btn btn-outline-success" href="{% url 'request:comment_display' request.id %}" style="width: 80; height: 15;">
-                                                    مشاهدة ردك
-                                                </a></td>
+                                                <td><a  class="btn btn-outline-success"  href="{% url 'request:add_comment_to_ConsultationRequest' request.pk %}" style=" height: 15;"  id="Companyupdate" name="Companyupdate">
+                                                    الرد على الإستشارة
+                                                </button></td>
+                                        
                                                 {% endif %}
                                           
 
